@@ -23,7 +23,9 @@ public class Cypher {
                     encrypt(userAnswear);
                     break;
                 case "2":
-                    System.out.println("error");
+                    System.out.println("Введите текст для расшифровки");
+                    userAnswear = scanner.nextLine();
+                    decrypt(userAnswear);
                     break;
                 case "3":
                     appEnd = true;
@@ -59,5 +61,31 @@ public class Cypher {
         }
         System.out.println(systemUnswear);
 
+    }
+    private static void  decrypt(String userAnswear) {
+        String[][] keyMass = {
+                {"А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "ъ", "Ы", "Ь", "Э", "Ю", "Я", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", " ", ",", "!", "?"},
+                {"Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К", "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц", "Ч", "Ш", "Щ", "ъ", "Ы", "Ь", "Э", "Ю", "Я", "А", "Б", "В", "3", "4", "5", "6", "7", "8", "9", "0", "1", "2", "/", "#", "*", "%", "@"}
+        };
+
+        String[] massForDecrypt = userAnswear.split("");
+        String[] massForUnswear = new String[massForDecrypt.length];
+        for (int i = 0; i < massForDecrypt.length; i++) {
+            for (int x = 0; x < keyMass[1].length; x++) {
+                if (massForDecrypt[i].equalsIgnoreCase(keyMass[1][x])) {
+                    char checkletter = massForDecrypt[i].charAt(0);
+                    if (Character.isUpperCase(checkletter)) {
+                        massForUnswear[i] = keyMass[0][x];
+                    }else{
+                        massForUnswear[i]= keyMass[0][x].toLowerCase();
+                    }
+                }
+            }
+        }
+        String systemUnswear = "";
+        for (String s : massForUnswear) {
+            systemUnswear = systemUnswear.concat(s);
+        }
+        System.out.println(systemUnswear);
     }
 }
