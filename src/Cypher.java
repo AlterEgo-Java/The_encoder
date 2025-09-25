@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Cypher {
@@ -54,6 +53,11 @@ public class Cypher {
                 }
             }
         }
-        System.out.println(Arrays.toString(massForUnswear));
+       String systemUnswear = "";
+        for (String s : massForUnswear) {
+            systemUnswear = systemUnswear.concat(s);
+        }
+        System.out.println(systemUnswear);
+
     }
 }
